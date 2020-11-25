@@ -8,7 +8,7 @@ const socialsData = [
         link: '#'
     },
     {
-        icon: 'dribble',
+        icon: 'dribbble',
         link: '#'
     },
     {
