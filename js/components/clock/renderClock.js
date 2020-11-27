@@ -44,7 +44,7 @@ secondsLeft -= hours * 60 * 60;
 
 const minutes = Math.floor(secondsLeft / 60);
 
-const seconds = math.floor(secondsLeft - minutes * 60);
+const seconds = Math.floor(secondsLeft - minutes * 60);
 
 const HTML = `<div class = "time-box">
                     <div class = "time"> ${days} </div>
