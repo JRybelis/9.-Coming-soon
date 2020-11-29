@@ -33,8 +33,8 @@
     .container {
         grid-template-columns: 1fr 300px 300px 1fr;
     }
-        .container > row.row-short,
-        .container > row {
+        .container > .row-short,
+        .container > .row {
             grid-column: 2/4;
         }
 }
@@ -42,7 +42,7 @@
     .container {
         grid-template-columns: 20px 1fr 20px;
     }
-        .container > .row-short
+        .container > .row-short,
         .container > .row {
             grid-column: 2/3;
         }

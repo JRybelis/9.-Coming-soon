@@ -1,5 +1,6 @@
 .form {
     display: inline-block;
+    position: relative;
     width: 100%;
     color: #444;
 }
