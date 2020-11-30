@@ -1,8 +1,5 @@
 .mouse {
     display: inline-block;
-    position: absolute;
-    top: 76%;
-    left: 50%;
     width: 20px;
     height: 30px;
     border: 3px solid #fff;
@@ -34,16 +31,5 @@
     100% {
         margin-top: 16px;
         background-color: #fff0;
-    }
-}
-
-@media (max-width: 700px) {
-    .mouse {
-        top: 90%
-    }
-}
-@media (max-width: 455px) {
-    .mouse {
-        position: sticky;
     }
 }
