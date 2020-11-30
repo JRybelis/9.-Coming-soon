@@ -1,3 +1,5 @@
+import { countTimeDiff } from "./countTimeDiff.js";
+
 // Target date is the New Year's Eve
 // 2021-01-01 00:00:00
 
@@ -9,6 +11,7 @@
 function renderClock (selector) {
     if (typeof selector !== 'string' || selector === "") {
         console.error ("ERROR: the selector must be of string text type and cannot be empty.")
+        return false;
     }
     const DOM = document.querySelector (selector);
     if (!DOM) {
@@ -16,54 +19,39 @@ function renderClock (selector) {
         return false;
     }
 
-// Current year (2020)
-    const date = new Date();
-    const currentYear = date.getFullYear();
-
-// NYE = current year + 1 (2020 + 1 = 2021)
-const newYear = currentYear + 1;
-
-// Constructing the date in its full format: ${NYE}-01-01 00:00:00
-const newYearDate = `${newYear}-01-01 00:00:00`;
-const newYearObject = new Date (newYearDate);
-const newYearMiliseconds = newYearObject.getTime();
-
-// current time yyyy-mm-dd hh:mm:ss:ms
-const currentTimeMiliseconds = date.getTime();
-
-// The difference in time calculation
-const timeLeft = newYearMiliseconds - currentTimeMiliseconds;
-let secondsLeft = timeLeft / 1000;
-
-// take timeLeft and convert it to days, hours, minutes, and seconds, separated out.
-const days = Math.floor(secondsLeft / 60 / 60 / 24);
-secondsLeft -= days * 60 * 60 * 24;
-
-const hours = Math.floor(secondsLeft / 60 / 60);
-secondsLeft -= hours * 60 * 60;
-
-const minutes = Math.floor(secondsLeft / 60);
-
-const seconds = Math.floor(secondsLeft - minutes * 60);
+    const time = countTimeDiff();
 
 const HTML = `<div class = "time-box">
-                    <div class = "time"> ${days} </div>
+                    <div class = "time"> ${time.days} </div>
                     <span>Days</span>
                 </div>
                 <div class = "time-box">
-                    <div class = "time"> ${hours}</div>
+                    <div class = "time"> ${time.hours}</div>
                     <span>Hours</span>
                 </div>
                 <div class = "time-box">
-                    <div class = "time"> ${minutes}</div>
+                    <div class = "time"> ${time.minutes}</div>
                     <span>Minutes</span>
                 </div>
                 <div class = "time-box">
-                    <div class = "time"> ${seconds}</div>
+                    <div class = "time"> ${time.seconds}</div>
                     <span>Seconds</span>
                 </div>`;
 
     DOM.innerHTML = HTML;
+    const timesDOM = DOM.querySelectorAll('.time'); /* contains all the div class = .time elements */
+
+    // launching the clock mechanics
+    let timePassed = 0;
+
+    setInterval(() => {
+        const time = countTimeDiff();
+        timesDOM[0].innerText = time.days;
+        timesDOM[1].innerText = time.hours;
+        timesDOM[2].innerText = time.minutes;
+        timesDOM[3].innerText = time.seconds;
+        }, 1000);
+
     return true;
 }
 
